@@ -1,0 +1,63 @@
+name: Generate
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 12 * * 0"
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - "README.md"
+      - "LICENSE*"
+jobs:
+  build:
+    name: Build and Publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set variables
+        run: |
+          echo "RELEASE_NAME=$(date +%Y%m%d%H%M%S)" >> $GITHUB_ENV
+          echo "CHINA_LIST=https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf" >> $GITHUB_ENV
+          echo "APPLE_LIST=https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/apple.china.conf" >> $GITHUB_ENV
+          echo "GOOGLE_LIST=https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/google.china.conf" >> $GITHUB_ENV
+        shell: bash
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Download latest lists
+        run: |
+          echo "payload:" >google.yaml
+          echo "payload:" >apple.yaml
+          echo "payload:" >china.yaml
+          curl -sSL "${CHINA_LIST}"  | cut -f 2 -d '/' | awk '{printf ("  - |+.%s|\n", $0)}' | sed "s/|/'/g" >> google.yaml
+          curl -sSL "${APPLE_LIST}"  | cut -f 2 -d '/' | awk '{printf ("  - |+.%s|\n", $0)}' | sed "s/|/'/g" >> apple.yaml
+          curl -sSL "${GOOGLE_LIST}" | cut -f 2 -d '/' | awk '{printf ("  - |+.%s|\n", $0)}' | sed "s/|/'/g" >> china.yaml
+          sha512sum *.yaml > sha512sum
+
+      - name: Move files to release directory
+        run: |
+          mkdir -p release
+          cp *.yaml ./release
+
+      - name: Push to release
+        continue-on-error: true
+        run: |
+          cd release || exit 1
+          git init
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "3736910+github-actions[bot]@users.noreply.github.com"
+          git switch -c release
+          git add .
+          git commit -m "${{ env.RELEASE_NAME }}"
+          git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
+          git push -f origin release
+
+      - name: Publish release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "release/*.yaml,sha512sum"
+          body: ${{ env.RELEASE_NAME }}
+          name: ${{ env.RELEASE_NAME }}
+          tag: ${{ env.RELEASE_NAME }}
+          token: ${{ secrets.GITHUB_TOKEN }}
