@@ -2,7 +2,7 @@
 
 Clash rules based on [felixonmars/dnsmasq-china-list][links-felix-list].
 
-_**Updated every Sunday.**_
+_**Updated every Saturday.**_
 
 ## Links
 
