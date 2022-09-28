@@ -24,6 +24,8 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          ref: release
 
       - name: Download latest lists
         run: |
@@ -33,30 +35,24 @@ jobs:
           curl -sSL "${GOOGLE_LIST}" | cut -f 2 -d '/' | awk '{printf ("  - |+.%s|\n", $0)}' | sed "s/|/'/g" >> google.yaml
           curl -sSL "${APPLE_LIST}"  | cut -f 2 -d '/' | awk '{printf ("  - |+.%s|\n", $0)}' | sed "s/|/'/g" >> apple.yaml
           curl -sSL "${CHINA_LIST}"  | cut -f 2 -d '/' | awk '{printf ("  - |+.%s|\n", $0)}' | sed "s/|/'/g" >> china.yaml
-          sha512sum *.yaml > sha512sum
-
-      - name: Move files to release directory
-        run: |
-          mkdir -p release
-          cp *.yaml ./release
 
       - name: Push to release
         continue-on-error: true
         run: |
-          cd release || exit 1
-          git init
           git config --global user.name "github-actions[bot]"
           git config --global user.email "3736910+github-actions[bot]@users.noreply.github.com"
-          git switch -c release
-          git add .
-          git commit -m "${{ env.RELEASE_NAME }}"
+          git commit -am "${{ env.RELEASE_NAME }}"
           git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
-          git push -f origin release
+          git push origin release
+
+      - name: Generate sha512sum
+        run: |
+          sha512sum *.yaml > sha512sum
 
       - name: Publish release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "release/*.yaml,sha512sum"
+          artifacts: "*.yaml,sha512sum"
           body: ${{ env.RELEASE_NAME }}
           name: ${{ env.RELEASE_NAME }}
           tag: ${{ env.RELEASE_NAME }}
