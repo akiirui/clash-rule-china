@@ -55,5 +55,6 @@ jobs:
           artifacts: "*.yaml,sha512sum"
           body: ${{ env.RELEASE_NAME }}
           name: ${{ env.RELEASE_NAME }}
+          commit: release
           tag: ${{ env.RELEASE_NAME }}
           token: ${{ secrets.GITHUB_TOKEN }}
