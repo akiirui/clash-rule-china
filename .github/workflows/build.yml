@@ -17,10 +17,11 @@ jobs:
     steps:
       - name: Set variables
         run: |
-          echo "RELEASE_NAME=$(date +%Y%m%d%H%M%S)" >> $GITHUB_ENV
-          echo "CHINA_LIST=https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf" >> $GITHUB_ENV
-          echo "APPLE_LIST=https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/apple.china.conf" >> $GITHUB_ENV
-          echo "GOOGLE_LIST=https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/google.china.conf" >> $GITHUB_ENV
+          echo "RELEASE_NAME=$(date +%Y%m%d%H%M%S)" >>$GITHUB_ENV
+          echo "CHINA_LIST=https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf" >>$GITHUB_ENV
+          echo "APPLE_LIST=https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/apple.china.conf" >>$GITHUB_ENV
+          echo "GOOGLE_LIST=https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/google.china.conf" >>$GITHUB_ENV
+          echo "README_FILE=https://raw.githubusercontent.com/akiirui/clash-rule-china/main/README.md" >>$GITHUB_ENV
         shell: bash
 
       - name: Checkout
@@ -30,12 +31,13 @@ jobs:
 
       - name: Download latest lists
         run: |
-          echo "payload:" >google.yaml
-          echo "payload:" >apple.yaml
           echo "payload:" >china.yaml
-          curl -sSL "${GOOGLE_LIST}" | cut -f 2 -d '/' | awk '{printf ("  - |+.%s|\n", $0)}' | sed "s/|/'/g" >> google.yaml
-          curl -sSL "${APPLE_LIST}"  | cut -f 2 -d '/' | awk '{printf ("  - |+.%s|\n", $0)}' | sed "s/|/'/g" >> apple.yaml
-          curl -sSL "${CHINA_LIST}"  | cut -f 2 -d '/' | awk '{printf ("  - |+.%s|\n", $0)}' | sed "s/|/'/g" >> china.yaml
+          echo "payload:" >apple.yaml
+          echo "payload:" >google.yaml
+          curl -sSL "${CHINA_LIST}"  | cut -f 2 -d / | awk '{printf ("  - |+.%s|\n", $0)}' | sed "s/|/'/g" >>china.yaml
+          curl -sSL "${APPLE_LIST}"  | cut -f 2 -d / | awk '{printf ("  - |+.%s|\n", $0)}' | sed "s/|/'/g" >>apple.yaml
+          curl -sSL "${GOOGLE_LIST}" | cut -f 2 -d / | awk '{printf ("  - |+.%s|\n", $0)}' | sed "s/|/'/g" >>google.yaml
+          curl -sSL "${README_FILE}" >>README
 
       - name: Push to release
         continue-on-error: true
