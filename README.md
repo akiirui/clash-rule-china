@@ -7,14 +7,14 @@ _**Updated every Saturday.**_
 ## Links
 
 - Apple
-  - https://raw.githubusercontent.com/akiirui/clash-rule-china/release/apple.yaml
-  - https://cdn.jsdelivr.net/gh/akiirui/clash-rule-china@release/apple.yaml
+  - https://raw.githubusercontent.com/akiirui/clash-rule-china/main/release/apple.yaml
+  - https://cdn.jsdelivr.net/gh/akiirui/clash-rule-china@main/release/apple.yaml
 - China
-  - https://raw.githubusercontent.com/akiirui/clash-rule-china/release/china.yaml
-  - https://cdn.jsdelivr.net/gh/akiirui/clash-rule-china@release/china.yaml
+  - https://raw.githubusercontent.com/akiirui/clash-rule-china/main/release/china.yaml
+  - https://cdn.jsdelivr.net/gh/akiirui/clash-rule-china@main/release/china.yaml
 - Google
-  - https://raw.githubusercontent.com/akiirui/clash-rule-china/release/google.yaml
-  - https://cdn.jsdelivr.net/gh/akiirui/clash-rule-china@release/google.yaml
+  - https://raw.githubusercontent.com/akiirui/clash-rule-china/main/release/google.yaml
+  - https://cdn.jsdelivr.net/gh/akiirui/clash-rule-china@main/release/google.yaml
 
 ## Usage
 
@@ -25,19 +25,19 @@ rule-providers:
   apple:
     behavior: domain
     type: http
-    url: "https://cdn.jsdelivr.net/gh/akiirui/clash-rule-china@release/apple.yaml"
+    url: "https://cdn.jsdelivr.net/gh/akiirui/clash-rule-china@main/release/apple.yaml"
     interval: 172800
     path: ./apple.yaml
   china:
     behavior: domain
     type: http
-    url: "https://cdn.jsdelivr.net/gh/akiirui/clash-rule-china@release/china.yaml"
+    url: "https://cdn.jsdelivr.net/gh/akiirui/clash-rule-china@main/release/china.yaml"
     interval: 172800
     path: ./china.yaml
   google:
     behavior: domain
     type: http
-    url: "https://cdn.jsdelivr.net/gh/akiirui/clash-rule-china@release/google.yaml"
+    url: "https://cdn.jsdelivr.net/gh/akiirui/clash-rule-china@main/release/google.yaml"
     interval: 172800
     path: ./google.yaml
 ```
