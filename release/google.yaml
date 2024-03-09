@@ -191,3 +191,6 @@ payload:
   - '+.uberproxy-with-cn.l.google.com'
   - '+.uberproxy-with-cn4.l.google.com'
   - '+.uberproxy-with-cn6.l.google.com'
+  - '+.'
+  - '+.# Other corp related domain'
+  - '+.qiao-cn.com'
