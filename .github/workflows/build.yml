@@ -13,7 +13,7 @@ on:
 
 jobs:
   build:
-    name: Build and Publish
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - name: Set variables
@@ -27,15 +27,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Download latest lists
+      - name: Generate Clash rule set
         working-directory: release
         run: |
           echo "payload:" >china.yaml
           echo "payload:" >apple.yaml
           echo "payload:" >google.yaml
-          curl -sSL "${CHINA_LIST}"  | cut -f 2 -d / | awk '{printf ("  - |+.%s|\n", $0)}' | sed "s/|/'/g" >>china.yaml
-          curl -sSL "${APPLE_LIST}"  | cut -f 2 -d / | awk '{printf ("  - |+.%s|\n", $0)}' | sed "s/|/'/g" >>apple.yaml
-          curl -sSL "${GOOGLE_LIST}" | cut -f 2 -d / | awk '{printf ("  - |+.%s|\n", $0)}' | sed "s/|/'/g" >>google.yaml
+          curl -sSL "${CHINA_LIST}"  | grep 'server=' | cut -f 2 -d / | awk '{printf ("  - |+.%s|\n", $0)}' | sed "s/|/'/g" >>china.yaml
+          curl -sSL "${APPLE_LIST}"  | grep 'server=' | cut -f 2 -d / | awk '{printf ("  - |+.%s|\n", $0)}' | sed "s/|/'/g" >>apple.yaml
+          curl -sSL "${GOOGLE_LIST}" | grep 'server=' | cut -f 2 -d / | awk '{printf ("  - |+.%s|\n", $0)}' | sed "s/|/'/g" >>google.yaml
+
+      - name: Generate Mihomo rule set
+        run: |
+          go run ./ -i release/china.yaml -o release/china.mrs
+          go run ./ -i release/apple.yaml -o release/apple.mrs
+          go run ./ -i release/google.yaml -o release/google.mrs
 
       - name: Push to main
         continue-on-error: true
@@ -48,12 +54,12 @@ jobs:
       - name: Generate sha512sum
         working-directory: release
         run: |
-          sha512sum *.yaml > sha512sum
+          sha512sum *.yaml *.mrs > sha512sum
 
       - name: Publish release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "release/*.yaml,release/sha512sum"
+          artifacts: "release/*.yaml,release/*.mrs,release/sha512sum"
           body: ${{ env.RELEASE_NAME }}
           name: ${{ env.RELEASE_NAME }}
           tag: ${{ env.RELEASE_NAME }}
