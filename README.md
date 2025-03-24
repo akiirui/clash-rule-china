@@ -1,11 +1,7 @@
-# clash-rule-china
+## This repository has been merged into [akiirui/domain-list-china][link-1]
 
-Clash rules based on [felixonmars/dnsmasq-china-list][links-felix-list].
+**Only used to redirect release links.**
 
-_**Updated every Saturday.**_
+**It is recommended to change the url of `rule-providers`.**
 
-## Thanks
-
-- [felixonmars/dnsmasq-china-list][links-felix-list]
-
-[links-felix-list]: https://github.com/felixonmars/dnsmasq-china-list
+[link-1]: https://github.com/akiirui/domain-list-china
