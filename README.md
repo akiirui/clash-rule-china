@@ -1,7 +1,10 @@
-## This repository has been merged into [akiirui/domain-list-china][link-1]
+# clash-rule-china
 
-**Only used to redirect release links.**
-
-**It is recommended to change the url of `rule-providers`.**
+> [!IMPORTANT]
+>
+> This repository has been merged into [akiirui/domain-list-china][link-1]
+>
+> It is recommended to change the url of `rule-providers`, see [Usage][link-2].
 
 [link-1]: https://github.com/akiirui/domain-list-china
+[link-2]: https://github.com/akiirui/domain-list-china/blob/main/USAGE.md
