@@ -4,9 +4,8 @@ payload:
     - +.a3.mzstatic.com
     - +.a4.mzstatic.com
     - +.a5.mzstatic.com
-    - +.adcdownload.apple.com.akadns.net
     - +.adcdownload.apple.com
-    - +.amp-api-updates.apps.apple.com
+    - +.adcdownload.apple.com.akadns.net
     - +.amp-api.media.apple.com
     - +.app-site-association.cdn-apple.com
     - +.appldnld.apple.com
@@ -14,7 +13,6 @@ payload:
     - +.appleid.cdn-apple.com
     - +.apps.apple.com
     - +.apps.mzstatic.com
-    - +.bag-cdn.itunes-apple.com.akadns.net
     - +.cdn-cn1.apple-mapkit.com
     - +.cdn-cn2.apple-mapkit.com
     - +.cdn-cn3.apple-mapkit.com
@@ -25,8 +23,8 @@ payload:
     - +.cdn3.apple-mapkit.com
     - +.cdn4.apple-mapkit.com
     - +.cds-cdn.v.aaplimg.com
-    - +.cds.apple.com.akadns.net
     - +.cds.apple.com
+    - +.cds.apple.com.akadns.net
     - +.cdsassets.apple.com
     - +.certs.apple.com
     - +.cl1-cdn.origin-apple.com.akadns.net
@@ -40,11 +38,11 @@ payload:
     - +.cl4.apple.com
     - +.cl5-cdn.origin-apple.com.akadns.net
     - +.cl5.apple.com
-    - +.clientflow.apple.com.akadns.net
     - +.clientflow.apple.com
+    - +.clientflow.apple.com.akadns.net
     - +.cn-smp-paymentservices.apple.com
-    - +.configuration.apple.com.akadns.net
     - +.configuration.apple.com
+    - +.configuration.apple.com.akadns.net
     - +.crl.apple.com
     - +.cstat.apple.com
     - +.cstat.cdn-apple.com
@@ -59,8 +57,8 @@ payload:
     - +.gsp10-ssl-cn.ls.apple.com
     - +.gsp12-cn.ls.apple.com
     - +.gsp13-cn.ls.apple.com
-    - +.gsp4-cn.ls.apple.com.edgekey.net.globalredir.akadns.net
     - +.gsp4-cn.ls.apple.com
+    - +.gsp4-cn.ls.apple.com.edgekey.net.globalredir.akadns.net
     - +.gsp5-cn.ls.apple.com
     - +.gsp85-cn-ssl.ls.apple.com
     - +.gspe19-2-cn-ssl.ls-apple.com.akadns.net
@@ -90,7 +88,6 @@ payload:
     - +.ipcdn.apple.com
     - +.iphone-ld.apple.com
     - +.iphone-ld.origin-apple.com.akadns.net
-    - +.is-ssl.mzstatic.com-cn-lb.itunes-apple.com.akadns.net
     - +.is1-ssl.mzstatic.com
     - +.is1.mzstatic.com
     - +.is2-ssl.mzstatic.com
@@ -134,9 +131,9 @@ payload:
     - +.static.gc.apple.com
     - +.stocks-sparkline-lb.apple.com.akadns.net
     - +.stocks-sparkline.apple.com
-    - +.store.apple.com.edgekey.net.globalredir.akadns.net
-    - +.store.apple.com.edgekey.net
     - +.store.apple.com
+    - +.store.apple.com.edgekey.net
+    - +.store.apple.com.edgekey.net.globalredir.akadns.net
     - +.store.storeimages.apple.com.akadns.net
     - +.store.storeimages.cdn-apple.com
     - +.support-china.apple-support.akadns.net
@@ -147,22 +144,22 @@ payload:
     - +.swcatalog.apple.com
     - +.swcdn.apple.com
     - +.swcdn.g.aaplimg.com
-    - +.swdist.apple.com.akadns.net
     - +.swdist.apple.com
+    - +.swdist.apple.com.akadns.net
     - +.swscan-cdn.apple.com.akadns.net
     - +.swscan.apple.com
     - +.sylvan.apple.com
     - +.tj-pod1-smp-device.apple.com
-    - +.updates-http.cdn-apple.com.akadns.net
     - +.updates-http.cdn-apple.com
+    - +.updates-http.cdn-apple.com.akadns.net
     - +.updates.cdn-apple.com
     - +.valid.apple.com
     - +.valid.origin-apple.com.akadns.net
-    - +.weather-data.apple.com.akadns.net
     - +.weather-data.apple.com
+    - +.weather-data.apple.com.akadns.net
     - +.weather-map.apple.com
     - +.weather-map2.apple.com
     - +.weatherkit.apple.com
-    - +.www.apple.com.edgekey.net.globalredir.akadns.net
     - +.www.apple.com
+    - +.www.apple.com.edgekey.net.globalredir.akadns.net
     - +.xp.apple.com
